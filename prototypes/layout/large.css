@@ -1,0 +1,12 @@
+#tasks {
+  width: 50%;
+  margin-left: 20%;
+}
+#projects {
+  width: 20%;
+  left: 0;
+}
+#inspector {
+  width: 30%;
+  top: 0;
+}

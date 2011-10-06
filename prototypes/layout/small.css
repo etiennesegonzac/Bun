@@ -1,0 +1,15 @@
+header a {
+  display: block;
+}
+#tasks, #projects, #inspector {
+  width: 100%;
+}
+#projects, #inspector {
+  width: 100%;
+}
+#projects {
+  left: -102%;
+}
+#inspector {
+  top: -102%;
+}

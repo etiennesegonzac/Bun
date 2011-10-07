@@ -7,6 +7,6 @@
   left: 0;
 }
 #inspector {
-  width: 30%;
+  width: 30.5%; // webkit bug
   top: 0;
 }

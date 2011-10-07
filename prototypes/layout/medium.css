@@ -1,15 +1,17 @@
-header a {
+#projects header a, #tasks header a {
   display: block;
 }
 #tasks {
-  width: 100%;
-}
-#projects, #inspector {
-  width: 70%;
+  width: 60%;
 }
 #projects {
-  left: -72%;
+  width: 60%;
+  top: -102%;
+  border-bottom: 2px black solid;
+}
+#projects .container {
+  padding-bottom: 15px;
 }
 #inspector {
-  top: -102%;
+  width: 40.5%;
 }

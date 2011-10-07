@@ -7,9 +7,10 @@ header a {
 #projects, #inspector {
   width: 100%;
 }
-#projects {
-  left: -102%;
-}
-#inspector {
+#projects, #inspector {
   top: -102%;
+  border-bottom: 2px black solid;
+}
+#projects .container, #inspector .container {
+  padding-bottom: 15px;
 }

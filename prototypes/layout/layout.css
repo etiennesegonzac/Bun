@@ -39,6 +39,34 @@ header a {
   font-weight: normal;
   font-size: 13px;
 }
+#projects header {
+  background-color: #949494;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#DEDEDE), to(#949494));
+  background-image: -moz-linear-gradient(top, #DEDEDE, #949494);
+  background-image: -ms-linear-gradient(top, #DEDEDE, #949494);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DEDEDE), color-stop(100%, #949494));
+  background-image: -webkit-linear-gradient(top, #DEDEDE, #949494);
+  background-image: -o-linear-gradient(top, #DEDEDE, #949494);
+  background-image: linear-gradient(top, #DEDEDE, #949494);
+}
+#details header {
+  background-color: #eedc94;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#fceec1), to(#eedc94));
+  background-image: -moz-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -ms-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fceec1), color-stop(100%, #eedc94));
+  background-image: -webkit-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -o-linear-gradient(top, #fceec1, #eedc94);
+  background-image: linear-gradient(top, #fceec1, #eedc94);
+
+  color: #404040;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+#details header a {
+  color: #404040;
+}
 .container {
   padding: 5px 0;
 }

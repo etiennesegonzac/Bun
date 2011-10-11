@@ -6,12 +6,9 @@
 }
 #projects {
   width: 60%;
-  top: -102%;
-  border-bottom: 2px black solid;
+  left: -102%;
+  display:none;
 }
-#projects .container {
-  padding-bottom: 15px;
-}
-#inspector {
+#details {
   width: 40.5%;
 }

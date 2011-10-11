@@ -1,16 +1,18 @@
 header a {
   display: block;
 }
-#tasks, #projects, #inspector {
+#tasks, #projects, #details {
   width: 100%;
+  box-shadow: none;
 }
-#projects, #inspector {
+#projects {
+  left: -102%;
+}
+#details {
+  top: 102%;
+}
+#projects, #details {
   width: 100%;
+  display: none;
 }
-#projects, #inspector {
-  top: -102%;
-  border-bottom: 2px black solid;
-}
-#projects .container, #inspector .container {
-  padding-bottom: 15px;
-}
+

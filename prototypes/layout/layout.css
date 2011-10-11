@@ -42,17 +42,33 @@ header a {
 .container {
   padding: 5px 0;
 }
+.label.important {
+  background-color: #C43C35;
+}
+.label.notice {
+  background-color: #62CFFC;
+}
+.label {
+  background-color: #BFBFBF;
+  border-radius: 3px 3px 3px 3px;
+  color: #FFFFFF;
+  font-size: 9.75px;
+  font-weight: bold;
+  padding: 1px 3px 2px;
+  text-transform: uppercase;
+
+  display: inline-block;
+  line-height: 12px;
+  height: 12px;
+  margin: 4px 12px;
+}
 
 #tasks {
   position: relative;
   min-height: 100%;
-  opacity: 1;
   background-color: #FFFBE9;
 
   font-size: 15px;
-}
-#tasks.faded {
-  opacity: 0.2;
 }
 #tasks ul {
   margin: 0;
@@ -69,7 +85,8 @@ header a {
   background-color: #FFFBE9;
 }
 #tasks li {
-  line-height: 44px;
+  min-height: 32px;
+  padding-top: 12px;
 
   border-top: 1px #75C0CA solid;
 }
@@ -91,6 +108,7 @@ header a {
   position: absolute;
   top: 0;
   left: 0;
+  min-height: 120%; /* hack to account for browser chrome */
   box-shadow: #262423 0px 0px 5px;
 
   background-color: #F1F1F1;
@@ -99,10 +117,10 @@ header a {
   font-weight: bold;
   color: #696969;
 
-  -webkit-transition-property: top;
-  -moz-transition-property: top;
-  -o-transition-property: top;
-  transition-property: top;
+  -webkit-transition-property: left;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  transition-property: left;
 
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
@@ -128,10 +146,11 @@ header a {
   color: #404040;
 }
 
-#inspector {
+#details {
   position: absolute;
   top: 0;
   right: 0;
+  min-height: 120%; /* hack to account for browser chrome */
   box-shadow: #262423 0px 0px 5px;
 
   background-color: #F1F1F1;
@@ -146,14 +165,14 @@ header a {
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
-#inspector .container {
+#details .container {
   padding: 10px;
 }
 
 #projects.shown {
-  top: 0;
+  left: 0;
 }
 
-#inspector.shown {
+#details.shown {
   top: 0;
 }

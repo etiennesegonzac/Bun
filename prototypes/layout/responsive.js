@@ -1,24 +1,62 @@
+// Transitions
+$.bunTransitions = {
+  scrollToTop: function() {
+    window.scrollTo(0,0);
+  },
+  show: function(id) {
+    this.scrollToTop();
+    $(id).show();
+
+    setTimeout(function(){
+      $(id).addClass("shown");
+
+      setTimeout(function(){
+        $("#tasks").hide();
+      }, 300);
+    }, 10);
+  },
+
+  hide: function(id) {
+    // this.scrollToTop();
+    $("#tasks").show();
+
+    setTimeout(function(){
+      $(id).removeClass("shown");
+
+      setTimeout(function(){
+        $(id).hide();
+      }, 300);
+    }, 10);
+  }
+};
+
+// Bindings
 $(document).delegate("a.projects-toggle", "click", function(event){
-  $("#projects").toggleClass("shown");
-  $("#tasks").toggleClass("faded");
+  if ($("#projects").css('display') === "none") {
+    $.bunTransitions.show("#projects");
+  } else {
+    $.bunTransitions.hide("#projects");
+  }
   event.preventDefault();
 });
 
-function inspectorHandle(event){
-  // window.scrollTo(0,0);
-  $("#inspector").toggleClass("shown");
+$(document).delegate("a.details-toggle, #tasks li", "click", function(event){
   if (window.innerWidth <= 600) {
-    $("#tasks").toggleClass("faded");
+    if ($("#details").css('display') === "none") {
+      $.bunTransitions.show("#details");
+    } else {
+      $.bunTransitions.hide("#details");
+    }
   }
   event.preventDefault();
-}
-$(document).delegate("a.inspector-toggle", "click", inspectorHandle);
-$(document).delegate("#tasks li", "click", inspectorHandle);
+});
 
+// Ready
 $(document).ready(function(){
-  $("#tasks li").tap(inspectorHandle);
+  $.bunTransitions.scrollToTop();
+
   if (window.innerWidth > 600) {
-    $("#inspector").css('height', $('#tasks').height());
+    $("#details").css('height', $('#tasks').height());
     if (window.innerWidth > 1024) {
       $("#projects").css('height', $('#tasks').height());
     }

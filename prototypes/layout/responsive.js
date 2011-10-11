@@ -27,16 +27,30 @@ $.bunTransitions = {
         $(id).hide();
       }, 300);
     }, 10);
+  },
+
+  toggleProjects: function() {
+    if ($("#projects").css('display') === "none") {
+      $.bunTransitions.show("#projects");
+    } else {
+      $.bunTransitions.hide("#projects");
+    }
   }
 };
 
 // Bindings
 $(document).delegate("a.projects-toggle", "click", function(event){
-  if ($("#projects").css('display') === "none") {
-    $.bunTransitions.show("#projects");
-  } else {
-    $.bunTransitions.hide("#projects");
-  }
+  $.bunTransitions.toggleProjects();
+  event.preventDefault();
+});
+
+$(document).delegate("#tasks", "swipeRight", function(event){
+  $.bunTransitions.toggleProjects();
+  event.preventDefault();
+});
+
+$(document).delegate("#projects", "swipeLeft", function(event){
+  $.bunTransitions.toggleProjects();
   event.preventDefault();
 });
 

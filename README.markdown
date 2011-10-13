@@ -1,4 +1,4 @@
-# Bun: a simple Todo list on all your devices
+# Bun: a simple Todo list synced between all your devices
 
 ## The Goal
 A simple, open source, todo list app working everywhere you have a modern browser (not just WebKit), with offline & sync capabilities.

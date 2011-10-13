@@ -39,17 +39,7 @@ $.bunTransitions = {
 };
 
 // Bindings
-$(document).delegate("a.projects-toggle", "click", function(event){
-  $.bunTransitions.toggleProjects();
-  event.preventDefault();
-});
-
-$(document).delegate("#tasks", "swipeRight", function(event){
-  $.bunTransitions.toggleProjects();
-  event.preventDefault();
-});
-
-$(document).delegate("#projects", "swipeLeft", function(event){
+$(document).delegate("a.projects-toggle", "click touchstart", function(event){
   $.bunTransitions.toggleProjects();
   event.preventDefault();
 });

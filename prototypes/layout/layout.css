@@ -91,6 +91,12 @@ header a {
   margin: 4px 12px;
 }
 
+/* Activating the GPU compositing */
+#projects, #tasks, #details {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}
+
 #tasks {
   position: relative;
   min-height: 100%;

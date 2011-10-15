@@ -114,56 +114,25 @@
 
       function markFailedAndLog(aLog) {
         failed = true;
-        log(aLog);
+        log("ERROR: " + aLog);
       }
 
-      try {
-        if (!testAllDBs(server)) {
-          markFailedAndLog("ERROR: can't read _all_dbs");
+      function test(aMethod, aLog) {
+        try {
+          if (!aMethod(server, dbName)) {
+            markFailedAndLog(aLog);
+          }
+        } catch(e) {
+          markFailedAndLog(aLog);
         }
-      } catch(e) {
-        markFailedAndLog("ERROR: can't read _all_dbs");
       }
 
-      try {
-        if (!testReadingNotCreatedDB(server, dbName)) {
-          markFailedAndLog("ERROR: can't access " + dbName);
-        }
-      } catch(e) {
-        markFailedAndLog("ERROR: can't access " + dbName);
-      }
-
-      try {
-        if (!testCreateDb(server, dbName)) {
-          markFailedAndLog("ERROR: can't create " + dbName);
-        }
-      } catch(e) {
-        markFailedAndLog("ERROR: can't create " + dbName);
-      }
-
-      try {
-        if (!testReadingCreatedDB(server, dbName)) {
-          markFailedAndLog("ERROR: can't read " + dbName);
-        }
-      } catch(e) {
-        markFailedAndLog("ERROR: can't read " + dbName);
-      }
-
-      try {
-        if (!testDeleteDb(server, dbName)) {
-          markFailedAndLog("ERROR: can't delete " + dbName);
-        }
-      } catch(e) {
-        markFailedAndLog("ERROR: can't delete " + dbName);
-      }
-
-      try {
-        if (!testReadingNotCreatedDB(server, dbName)) {
-          markFailedAndLog("ERROR: can't access " + dbName);
-        }
-      } catch(e) {
-        markFailedAndLog("ERROR: can't access " + dbName);
-      }
+      test(testAllDBs, "can't read _all_dbs");
+      test(testReadingNotCreatedDB, "can't access " + dbName);
+      test(testCreateDb, "can't create " + dbName);
+      test(testReadingCreatedDB, "can't read " + dbName);
+      test(testDeleteDb, "can't delete " + dbName);
+      test(testReadingNotCreatedDB, "can't access " + dbName);
 
       if (failed) {
         log("Test failed!");

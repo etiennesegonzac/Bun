@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="layout.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="small.css" media="screen and (max-width: 600px)" rel="stylesheet" type="text/css" />
+    <link href="medium.css" media="screen and (min-width:601px) and (max-width:1024px)" rel="stylesheet" type="text/css" />
+    <link href="large.css" media="screen and (min-width:1025px)" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <script src="zepto.min.js"></script>
+    <script src="responsive.js"></script>
+
+    <script src="js/ProjectsList.js"></script>
+    <script src="js/Project.js"></script>
+    <script src="js/Task.js"></script>
+    <script src="js/AppController.js"></script>
+
+    <title>Bun: IndexedDB Prototype</title>
+    <script>
+      $(document).ready(function(){
+        var appController = new AppController();
+        appController.start();
+      });
+    </script>
+  </head>
+  <body>
+    <section id="tasks">
+      <header>
+        <a class="projects-toggle" href="#">Projects</a>
+        Tasks
+      </header>
+      <div class="container">
+        <ul>
+        </ul>
+      </div>
+    </section>
+    <section id="projects">
+      <header>
+        <a class="projects-toggle" href="#">Close</a>
+        Projects
+      </header>
+      <div class="container">
+        <ul>
+          <li class="first">loading...</li>
+        </ul>
+      </div>
+    </section>
+    <section id="details">
+      <header>
+        <a class="details-toggle" href="#">Close</a>
+        Details
+      </header>
+      <div class="container">
+      </div>
+    </section>
+  </body>
+</html>

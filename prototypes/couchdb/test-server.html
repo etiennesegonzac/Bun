@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CouchDB server test</title>
+  </head>
+  <style>
+    #log {
+      height: 200px;
+      width: 250px;
+    }
+  </style>
+
+  <script>
+    function testAllDBs(aServer) {
+      var req = new XMLHttpRequest();
+      req.open("GET", aServer + "/_all_dbs", false);
+      req.send();
+      try {
+        if (req.status != 200) {
+          return false;
+        }
+        if (req.responseText[0] != '[' ||
+            req.responseText[req.responseText.length - 2] != ']') {
+          return false;
+        }
+      } catch (e) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function testReadingNotCreatedDB(aServer, aDbName) {
+      var req = new XMLHttpRequest();
+      req.open("GET", aServer + "/kidneys", false);
+      req.send();
+      try {
+        if (req.status != 404) {
+          return false;
+        }
+        if (req.responseText != '{"error":"not_found","reason":"no_db_file"}\n') {
+          return false;
+        }
+      } catch (e) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function testCreateDb(aServer, aDbName) {
+      var req = new XMLHttpRequest();
+      req.open("PUT", aServer + "/kidneys", false);
+      req.send();
+      try {
+        if (req.status != 201) {
+          return false;
+        }
+        if (req.responseText != '{"ok":true}\n') {
+          return false;
+        }
+      } catch (e) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function testReadingCreatedDB(aServer, aDbName) {
+      var req = new XMLHttpRequest();
+      req.open("GET", aServer + "/kidneys", false);
+      req.send();
+      try {
+        if (req.status != 200) {
+          return false;
+        }
+        if (req.responseText.indexOf('{"db_name":"kidneys","doc_count":0,"doc_del_count":0,"update_seq":0,"purge_seq":0') != 0) {
+          return false;
+        }
+      } catch (e) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function testDeleteDb(aServer, aDbName) {
+      var req = new XMLHttpRequest();
+      req.open("DELETE", aServer + "/kidneys", false);
+      req.send();
+      try {
+        if (req.status != 200) {
+          return false;
+        }
+        if (req.responseText != '{"ok":true}\n') {
+          return false;
+        }
+      } catch (e) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function log(aText) {
+      var l = document.getElementById('log');
+      l.innerHTML += aText + '\n';
+    }
+
+    function testCouchDBServerAccess() {
+      var server = document.getElementById('server').value;
+      var dbName = "kidneys";
+      var failed = false;
+
+      function markFailedAndLog(aLog) {
+        failed = true;
+        log(aLog);
+      }
+
+      try {
+        if (!testAllDBs(server)) {
+          markFailedAndLog("ERROR: can't read _all_dbs");
+        }
+      } catch(e) {
+        markFailedAndLog("ERROR: can't read _all_dbs");
+      }
+
+      try {
+        if (!testReadingNotCreatedDB(server, dbName)) {
+          markFailedAndLog("ERROR: can't access " + dbName);
+        }
+      } catch(e) {
+        markFailedAndLog("ERROR: can't access " + dbName);
+      }
+
+      try {
+        if (!testCreateDb(server, dbName)) {
+          markFailedAndLog("ERROR: can't create " + dbName);
+        }
+      } catch(e) {
+        markFailedAndLog("ERROR: can't create " + dbName);
+      }
+
+      try {
+        if (!testReadingCreatedDB(server, dbName)) {
+          markFailedAndLog("ERROR: can't read " + dbName);
+        }
+      } catch(e) {
+        markFailedAndLog("ERROR: can't read " + dbName);
+      }
+
+      try {
+        if (!testDeleteDb(server, dbName)) {
+          markFailedAndLog("ERROR: can't delete " + dbName);
+        }
+      } catch(e) {
+        markFailedAndLog("ERROR: can't delete " + dbName);
+      }
+
+      try {
+        if (!testReadingNotCreatedDB(server, dbName)) {
+          markFailedAndLog("ERROR: can't access " + dbName);
+        }
+      } catch(e) {
+        markFailedAndLog("ERROR: can't access " + dbName);
+      }
+
+      if (failed) {
+        log("Test failed!");
+      } else {
+        log("Test succeeded!");
+      }
+    }
+
+  </script>
+  <form onsubmit="testCouchDBServerAccess(); return false;">
+    <label>CouchDB server : <input type='url' placeholder="http://server.name.tld/" id='server'></label><input type='submit' value='Test'>
+  </form>
+  <textarea id='log' readonly></textarea>
+  <body>
+  </body>
+</html>

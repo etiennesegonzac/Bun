@@ -11,6 +11,7 @@ body {
   line-height: 18px;
 }
 header {
+  position: relative;
   height: 44px;
   box-shadow: #262423 0px 1px 2px;
 
@@ -67,9 +68,6 @@ header a {
 #details header a {
   color: #404040;
 }
-.container {
-  padding: 5px 0;
-}
 .label.important {
   background-color: #C43C35;
 }
@@ -109,20 +107,19 @@ header a {
   padding: 0;
   list-style: none;
 }
-#tasks ul li:nth-of-type(even) {
-  background-color: #FFFDF4;
-}
-#tasks ul li li:nth-of-type(odd) {
-  background-color: #FFFDF4;
-}
-#tasks ul li li:nth-of-type(even) {
-  background-color: #FFFBE9;
-}
 #tasks li {
   min-height: 32px;
   padding-top: 12px;
 
   border-top: 1px #75C0CA solid;
+
+  cursor: pointer;
+}
+#tasks li:nth-of-type(even) {
+  background-color: #FFFDF4;
+}
+#tasks li.selected {
+  background-color: #F8E8B2;
 }
 #tasks li input[type='checkbox'] {
   padding:0;
@@ -130,12 +127,6 @@ header a {
 }
 #tasks li:nth-child(1) {
   border-top: 0;
-}
-#tasks li {
-  cursor: pointer;
-}
-#tasks li li {
-  padding-left: 30px;
 }
 
 #projects {

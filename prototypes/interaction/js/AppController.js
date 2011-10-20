@@ -19,8 +19,13 @@ AppController.prototype.renderProjects = function() {
 
 AppController.prototype.bindActions = function(){
   var _controller = this;
+
   $(document).delegate("#projects li", "click", function(event){
     _controller.selectProject(parseInt($(this).data('id')));
+  });
+
+  $(document).delegate("#tasks li", "click", function(event){
+    _controller.selectTask(parseInt($(this).data('id')));
   });
 }
 
@@ -37,8 +42,24 @@ AppController.prototype.selectProject = function(id){
       return "<li data-id=\"" + i.toString() + "\"><input type=\"checkbox\" /> " + e.name + "</li>";
     }).join("\n"));
 
+    var _controller = this;
     setTimeout(function(){
       $.bunTransitions.toggleProjects();
+      _controller.selectTask(0);
     }, 100);
+  }
+}
+
+AppController.prototype.selectTask = function(id){
+  if (id < this.selectedProject.tasks.length && id >= 0) {
+    this.selectedTask = this.selectedProject.tasks[id];
+
+    $("#tasks li").each(function(i, e){
+      $(e).toggleClass("selected", (i == id));
+    });
+
+    // updating the tasks
+    details_html = "<h1>" + this.selectedTask.name + "</h1>\n";
+    $("#details .container").html(details_html);
   }
 }

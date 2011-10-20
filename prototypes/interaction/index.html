@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="layout.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="small.css" media="screen and (max-width: 600px)" rel="stylesheet" type="text/css" />
-    <link href="medium.css" media="screen and (min-width:601px) and (max-width:1024px)" rel="stylesheet" type="text/css" />
-    <link href="large.css" media="screen and (min-width:1025px)" rel="stylesheet" type="text/css" />
+    <link href="css/layout.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/small.css" media="screen and (max-width: 600px)" rel="stylesheet" type="text/css" />
+    <link href="css/medium.css" media="screen and (min-width:601px) and (max-width:1024px)" rel="stylesheet" type="text/css" />
+    <link href="css/large.css" media="screen and (min-width:1025px)" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
     <script src="zepto.min.js"></script>
-    <script src="responsive.js"></script>
 
     <script src="js/ProjectsList.js"></script>
     <script src="js/Project.js"></script>
     <script src="js/Task.js"></script>
+    <script src="js/TransitionManager.js"></script>
     <script src="js/AppController.js"></script>
 
     <title>Bun: IndexedDB Prototype</title>
@@ -20,6 +20,15 @@
       $(document).ready(function(){
         var appController = new AppController();
         appController.start();
+
+        appController.transitionManager.scrollToTop();
+
+        if (window.innerWidth > 600) {
+          $("#details").css('height', $('#tasks').height());
+          if (window.innerWidth > 1024) {
+            $("#projects").css('height', $('#tasks').height());
+          }
+        }
       });
     </script>
   </head>

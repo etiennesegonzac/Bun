@@ -1,5 +1,6 @@
 function AppController(){
   this.projectsList = new ProjectsList();
+  this.transitionManager = new TransitionManager();
   this.selectedProject = null;
   this.selectedTask = null;
 }
@@ -11,22 +12,49 @@ AppController.prototype.start = function(){
   this.selectProject(0);
 }
 
+AppController.prototype.bindActions = function(){
+  var _controller = this;
+  var touch_device = false;
+
+  // least awefull way to detect touch devices for now
+  try{
+    document.createEvent("TouchEvent"); 
+    touch_device = true
+  }catch(e){
+    touch_device = false;
+  }
+
+  bind_on = touch_device ? "tap" : "click";
+
+  $(document).delegate("#projects li", bind_on, function(event){
+    _controller.selectProject(parseInt($(this).data('id')));
+  });
+
+  $(document).delegate("#tasks li", bind_on, function(event){
+    _controller.selectTask(parseInt($(this).data('id')));
+  });
+
+  $(document).delegate("a.projects-toggle", bind_on, function(event){
+    _controller.transitionManager.toggleProjects();
+    event.preventDefault();
+  });
+
+  $(document).delegate("a.details-toggle, #tasks li", bind_on, function(event){
+    if (window.innerWidth <= 600) {
+      if ($("#details").css('display') === "none") {
+        _controller.transitionManager.show("#details");
+      } else {
+        _controller.transitionManager.hide("#details");
+      }
+    }
+    event.preventDefault();
+  });
+}
+
 AppController.prototype.renderProjects = function() {
   $("#projects ul").html(this.projectsList.projects.map(function(e, i){
     return "<li data-id=\"" + i.toString() + "\">" + e.name + "</li>"
   }).join("\n"));
-}
-
-AppController.prototype.bindActions = function(){
-  var _controller = this;
-
-  $(document).delegate("#projects li", "click", function(event){
-    _controller.selectProject(parseInt($(this).data('id')));
-  });
-
-  $(document).delegate("#tasks li", "click", function(event){
-    _controller.selectTask(parseInt($(this).data('id')));
-  });
 }
 
 AppController.prototype.selectProject = function(id){
@@ -43,8 +71,9 @@ AppController.prototype.selectProject = function(id){
     }).join("\n"));
 
     var _controller = this;
+
     setTimeout(function(){
-      $.bunTransitions.toggleProjects();
+      _controller.transitionManager.toggleProjects();
       _controller.selectTask(0);
     }, 100);
   }

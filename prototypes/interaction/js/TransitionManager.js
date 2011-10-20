@@ -38,4 +38,14 @@ function TransitionManager() {
       }
     }
   };
+
+  this.toggleDetails = function() {
+    if (window.innerWidth <= 600) {
+      if ($("#details").css('display') === "none") {
+        this.show("#details");
+      } else {
+        this.hide("#details");
+      }
+    }
+  };
 }

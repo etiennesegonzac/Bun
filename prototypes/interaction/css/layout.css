@@ -170,6 +170,7 @@ header a {
 }
 #projects li.selected {
   color: #404040;
+  background-color: #B2B2B2;
 }
 
 #details {

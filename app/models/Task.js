@@ -1,4 +1,7 @@
+var taskIdCounter = 0; // temporary uniqueId generator for projects
+
 function Task(name) {
+  this.id = taskIdCounter++;
   this.name = name;
 }
 

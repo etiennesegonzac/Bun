@@ -16,6 +16,11 @@
       it("set selected as falsy by default", function() {
         expect(this.project.selected).toBeFalsy();
       });
+
+      it("assigns a unique identifier", function() {
+        var other_project = new Project("other project", []);
+        expect(other_project.id).toBeGreaterThan(this.project.id);
+      });
     });
 
     describe("Observability", function() {

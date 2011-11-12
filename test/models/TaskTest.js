@@ -12,6 +12,11 @@
       it("set selected as falsy by default", function() {
         expect(this.task.selected).toBeFalsy();
       });
+
+      it("assigns a unique identifier", function() {
+        var other_task = new Task("other task");
+        expect(other_task.id).toBeGreaterThan(this.task.id);
+      });
     });
 
     describe("Observability", function() {

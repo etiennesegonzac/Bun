@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>App Tests</title>
+    <link rel="stylesheet" href="jasmine/jasmine.css">
+
+    <script src="../app/libs/zepto.min.js"></script>
+    <script src="../app/models/Observable.js"></script>
+    <script src="../app/models/ProjectsList.js"></script>
+    <script src="../app/models/Project.js"></script>
+    <script src="../app/models/Task.js"></script>
+
+    <script src="jasmine/jasmine.js"></script>
+    <script src="jasmine/jasmine-html.js"></script>
+
+    <script src="models/ObservableTest.js"></script>
+    <script src="models/ProjectsListTest.js"></script>
+    <script src="models/ProjectTest.js"></script>
+    <script src="models/TaskTest.js"></script>
+
+    <style>
+      #jasmine-fixtures {display:none}
+    </style>
+  </head>
+
+  <body id="suite">
+    <script>
+      jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+      jasmine.getEnv().execute();
+    </script>
+  </body>
+</html>

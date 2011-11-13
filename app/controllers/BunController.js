@@ -57,6 +57,44 @@ var BunController = {
   start: function(){
     this.projectsList.init();
     this.bindActions();
+
+    // main views
+    this.projectsListView = new ProjectsListView($("#projects-list"));
+    this.projectsListView.projects = this.projectsList.projects;
+    this.tasksListView = new TasksListView($("#tasks-list"));
+
+    // selecting the first project
+    this.selectProject(this.projectsList.projects[0].id);
+  },
+
+  selectProject: function selectProject(id) {
+    // finding the project with the corresponding id
+    var project = this.projectsList.projects.filter(function(p) {
+      return (p.id == parseInt(id));
+    })[0];
+
+    if (this.selectedProject) {
+      this.selectedProject.selected = false;
+    }
+    this.selectedProject = project;
+    project.selected = true;
+
+    // updating the tasks list view
+    this.tasksListView.tasks = this.selectedProject.tasks;
+    this.selectTask(this.selectedProject.tasks[0].id);
+  },
+
+  selectTask: function selectTask(id) {
+    // finding the task with the corresponding id
+    var task = this.selectedProject.tasks.filter(function(t) {
+      return (t.id == parseInt(id));
+    })[0];
+
+    if (this.selectedTask) {
+      this.selectedTask.selected = false;
+    }
+    this.selectedTask = task;
+    task.selected = true;
   },
 
   bindActions: function(){

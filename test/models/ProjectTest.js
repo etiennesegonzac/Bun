@@ -13,8 +13,8 @@
         expect(this.project.tasks.length).toEqual(1);
       });
 
-      it("set selected as falsy by default", function() {
-        expect(this.project.selected).toBeFalsy();
+      it("set selected as false by default", function() {
+        expect(this.project.selected).toEqual(false);
       });
 
       it("assigns a unique identifier", function() {

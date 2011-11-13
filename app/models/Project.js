@@ -4,6 +4,7 @@ function Project(aName, aTasks) {
   this.id = projectIdCounter++;
   this.name = aName;
   this.tasks = [];
+  this._selected = false;
 
   aTasks.forEach(function(e){
     this.tasks.push(new Task(e.name, e.due_date, e.notes, e.priority));

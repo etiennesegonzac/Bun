@@ -9,8 +9,8 @@
         expect(this.task.name).toEqual("test task");
       });
 
-      it("set selected as falsy by default", function() {
-        expect(this.task.selected).toBeFalsy();
+      it("set selected as false by default", function() {
+        expect(this.task.selected).toEqual(false);
       });
 
       it("assigns a unique identifier", function() {

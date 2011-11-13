@@ -6,6 +6,7 @@ function ProjectView(aElement, aProject) {
   this.render = function render() {
     self.element.html(self.project.name);
     self.element.toggleClass("selected", self.project.selected);
+    self.element.data("id", self.project.id);
   };
 
   this.project.bind("bun:change", this.render);

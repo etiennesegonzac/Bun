@@ -46,14 +46,19 @@
 
       it("adds the selected css class and re-render if needed", function() {
         this.project.selected = true;
-        expect($("#project_42").text()).toEqual("test project");
         expect($("#project_42").hasClass("selected")).toBeTruthy();
       });
 
       it("removes the selected css class and re-render if needed", function() {
         this.project.selected = false;
-        expect($("#project_42").text()).toEqual("test project");
         expect($("#project_42").hasClass("selected")).toBeFalsy();
+      });
+
+      it("inject the data id on the element", function() {
+        this.project.id = 42
+        this.projectView.render();
+
+        expect($("#project_42").data("id")).toEqual("42");
       });
     });
   });

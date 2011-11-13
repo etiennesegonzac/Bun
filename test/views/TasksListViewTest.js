@@ -49,7 +49,13 @@
         expect(this.tasksListView.taskViews.length).toEqual(2);
 
         this.tasksListView.taskViews.forEach(function(tv) {
-          expect(tv.element[0]).toExist();
+          expect(tv.element[0]).toMatchSelector("li");
+        });
+      });
+
+      it("renders a first time each task view", function() {
+        this.tasksListView.taskViews.forEach(function(tv) {
+          expect(tv.element.text()).toNotEqual("");
         });
       });
     });

@@ -12,8 +12,11 @@ function TasksListView(aElement) {
 
     // creating new ones
     self.tasks.forEach(function(task) {
-      var t_element = self.element.append("<li></li>");
-      self.taskViews.push(new TaskView(t_element, task));
+      self.element.append("<li></li>");
+      var t_element = self.element.children("li").last();
+      tv = new TaskView(t_element, task);
+      tv.render();
+      self.taskViews.push(tv);
     });
   }
 }

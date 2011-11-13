@@ -12,8 +12,11 @@ function ProjectsListView(aElement) {
 
     // creating new ones
     self.projects.forEach(function(project) {
-      var p_element = self.element.append("<li></li>");
-      self.projectViews.push(new ProjectView(p_element, project));
+      self.element.append("<li></li>");
+      var p_element = self.element.children("li").last();
+      pv = new ProjectView(p_element, project);
+      pv.render();
+      self.projectViews.push(pv);
     });
   }
 }

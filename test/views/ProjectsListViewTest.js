@@ -49,7 +49,13 @@
         expect(this.projectsListView.projectViews.length).toEqual(2);
 
         this.projectsListView.projectViews.forEach(function(pv) {
-          expect(pv.element[0]).toExist();
+          expect(pv.element[0]).toMatchSelector("li");
+        });
+      });
+
+      it("renders a first time each project view", function() {
+        this.projectsListView.projectViews.forEach(function(pv) {
+          expect(pv.element.text()).toNotEqual("");
         });
       });
     });

@@ -3,7 +3,7 @@
     beforeEach(function() {
       loadFixtures("fixtures/projects-view.html");
       this.projects = [(new Project("test project", [])), (new Project("other project", []))];
-      this.projectsListView = new ProjectsListView($("#projects-list"), this.projects);
+      this.projectsListView = new ProjectsListView($("#projects-list"));
     });
 
     describe("Constructor", function() {

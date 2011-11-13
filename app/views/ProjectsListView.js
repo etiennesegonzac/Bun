@@ -11,9 +11,9 @@ function ProjectsListView(aElement) {
     });
 
     // creating new ones
-    self.projects.forEach(function(p) {
+    self.projects.forEach(function(project) {
       var p_element = self.element.append("<li></li>");
-      self.projectViews.push(new ProjectView(p_element, p));
+      self.projectViews.push(new ProjectView(p_element, project));
     });
   }
 }

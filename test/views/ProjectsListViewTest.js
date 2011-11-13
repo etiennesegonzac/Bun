@@ -1,43 +1,43 @@
 (function() {
-  describe("ProjectsView", function() {
+  describe("ProjectsListView", function() {
     beforeEach(function() {
       loadFixtures("fixtures/projects-view.html");
       this.projects = [(new Project("test project", [])), (new Project("other project", []))];
-      this.projectsView = new ProjectsView($("#projects-list"), this.projects);
+      this.projectsListView = new ProjectsListView($("#projects-list"), this.projects);
     });
 
     describe("Constructor", function() {
       it("assigns the element", function() {
-        expect(this.projectsView.element).toEqual($("#projects-list"));
+        expect(this.projectsListView.element).toEqual($("#projects-list"));
       });
 
       it("starts with an empty projects array", function() {
-        expect(this.projectsView.projects).toEqual([]);
+        expect(this.projectsListView.projects).toEqual([]);
       });
 
       it("starts with an empty projects views array", function() {
-        expect(this.projectsView.projectViews).toEqual([]);
+        expect(this.projectsListView.projectViews).toEqual([]);
       });
     });
 
     describe("Rendering", function() {
       beforeEach(function() {
-        this.projectsView.projects = this.projects;
+        this.projectsListView.projects = this.projects;
       });
 
       it("triggers render when the projects property is set", function() {
-        spyOn(this.projectsView, "render");
+        spyOn(this.projectsListView, "render");
 
-        this.projectsView.projects = [new Project("test", [])];
-        expect(this.projectsView.render).toHaveBeenCalled();
+        this.projectsListView.projects = [new Project("test", [])];
+        expect(this.projectsListView.render).toHaveBeenCalled();
       });
 
       it("removes previous project views", function() {
         var projectView = new ProjectView(null, (new Project("test", [])));
         spyOn(projectView, "remove");
-        this.projectsView.projectViews = [projectView];
+        this.projectsListView.projectViews = [projectView];
 
-        this.projectsView.render();
+        this.projectsListView.render();
         expect(projectView.remove).toHaveBeenCalled();
       });
 
@@ -46,9 +46,9 @@
       });
 
       it("creates a project view for each project", function() {
-        expect(this.projectsView.projectViews.length).toEqual(2);
+        expect(this.projectsListView.projectViews.length).toEqual(2);
 
-        this.projectsView.projectViews.forEach(function(pv) {
+        this.projectsListView.projectViews.forEach(function(pv) {
           expect(pv.element[0]).toExist();
         });
       });

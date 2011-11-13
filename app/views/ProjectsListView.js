@@ -1,4 +1,4 @@
-function ProjectsView(aElement) {
+function ProjectsListView(aElement) {
   this.element = aElement; // a zepto element
   this._projects = [];
   this.projectViews = [];
@@ -19,10 +19,10 @@ function ProjectsView(aElement) {
 }
 
 // auto rendering when the projects property is set
-ProjectsView.prototype.__defineSetter__("projects", function setProjects(projects) {
+ProjectsListView.prototype.__defineSetter__("projects", function setProjects(projects) {
   this._projects = projects;
   this.render();
 });
-ProjectsView.prototype.__defineGetter__("projects", function projects() {
+ProjectsListView.prototype.__defineGetter__("projects", function projects() {
   return this._projects;
 });

@@ -120,12 +120,12 @@ var BunController = {
     });
 
     $(document).delegate("a.projects-toggle", (touch_device ? "touchstart" : "click"), function(event){
-      _controller.transitionManager.toggleProjects();
+      TransitionManager.toggleProjects();
       event.preventDefault();
     });
 
     $(document).delegate("a.details-toggle", (touch_device ? "touchstart" : "click"), function(event){
-      _controller.transitionManager.toggleDetails();
+      TransitionManager.toggleDetails();
       event.preventDefault();
     });
   }

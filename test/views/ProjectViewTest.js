@@ -54,7 +54,7 @@
         expect($("#project_42").hasClass("selected")).toBeFalsy();
       });
 
-      it("inject the data id on the element", function() {
+      it("injects the data id on the element", function() {
         this.project.id = 42
         this.projectView.render();
 

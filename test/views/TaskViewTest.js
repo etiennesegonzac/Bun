@@ -59,7 +59,7 @@
         expect($("#task_42").hasClass("selected")).toBeFalsy();
       });
 
-      it("inject the data id on the element", function() {
+      it("injects the data id on the element", function() {
         this.task.id = 42
         this.taskView.render();
 

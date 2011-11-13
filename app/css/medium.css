@@ -1,0 +1,14 @@
+#projects header a, #tasks header a {
+  display: block;
+}
+#tasks {
+  width: 60%;
+}
+#projects {
+  width: 60%;
+  left: -102%;
+  display:none;
+}
+#details {
+  width: 40.5%;
+}

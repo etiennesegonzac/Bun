@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/layout.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/small.css" media="screen and (max-width: 600px)" rel="stylesheet" type="text/css" />
+    <link href="css/medium.css" media="screen and (min-width:601px) and (max-width:1024px)" rel="stylesheet" type="text/css" />
+    <link href="css/large.css" media="screen and (min-width:1025px)" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <script src="libs/zepto.min.js"></script>
+    <script src="models/Observable.js"></script>
+    <script src="models/ProjectsList.js"></script>
+    <script src="models/Project.js"></script>
+    <script src="models/Task.js"></script>
+    <script src="controllers/BunController.js"></script>
+    <script src="views/ProjectView.js"></script>
+    <script src="views/TaskView.js"></script>
+    <script src="views/ProjectsListView.js"></script>
+    <script src="views/TasksListView.js"></script>
+
+    <title>BunTodo</title>
+    <script>
+      $(document).ready(function(){
+        BunController.start();
+
+        if (window.innerWidth > 600) {
+          $("#details").css('height', $('#tasks').height());
+          if (window.innerWidth > 1024) {
+            $("#projects").css('height', $('#tasks').height());
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <section id="tasks">
+      <header>
+        <a class="projects-toggle" href="#">Projects</a>
+        Tasks
+      </header>
+      <div class="container">
+        <ul id="tasks-list">
+        </ul>
+      </div>
+    </section>
+    <section id="projects">
+      <header>
+        <a class="projects-toggle" href="#">Close</a>
+        Projects
+      </header>
+      <div class="container">
+        <ul id="projects-list">
+        </ul>
+      </div>
+    </section>
+    <section id="details">
+      <header>
+        <a class="details-toggle" href="#">Close</a>
+        Details
+      </header>
+      <div class="container">
+      </div>
+    </section>
+  </body>
+</html>

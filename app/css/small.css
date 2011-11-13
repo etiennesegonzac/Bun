@@ -1,0 +1,19 @@
+header a {
+  display: block;
+}
+#tasks, #projects, #details {
+  width: 100%;
+  min-height: 120%; /* hack to account for browser chrome */
+  box-shadow: none;
+}
+#projects {
+  left: -102%;
+}
+#details {
+  top: 102%;
+}
+#projects, #details {
+  width: 100%;
+  display: none;
+}
+
